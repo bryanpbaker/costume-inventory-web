@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchCostumes } from '../redux/modules/costumes';
 
-class CostumeList extends Component {
+export class CostumeList extends Component {
   render() {
     return (
       <div>
@@ -10,4 +12,9 @@ class CostumeList extends Component {
   }
 }
 
-export default CostumeList;
+const mapStateToProps = ({ costumes }) => ({ costumes });
+
+export default connect(
+  mapStateToProps,
+  { fetchCostumes }
+)(CostumeList);
