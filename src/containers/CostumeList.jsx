@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCostumes } from '../redux/modules/costumeReducer';
+import { fetchCostumes } from '../redux/modules/costumes';
 
 export class CostumeList extends Component {
   async componentDidMount() {
