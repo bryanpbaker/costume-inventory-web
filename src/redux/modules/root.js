@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 // import modules
-import costumes from './costumes';
+import costumeReducer from './costumeReducer';
 
 export const rootReducer = combineReducers({
-  costumes
+  costumeReducer
 });

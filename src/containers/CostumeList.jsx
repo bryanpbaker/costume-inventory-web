@@ -1,20 +1,34 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchCostumes } from '../redux/modules/costumeReducer';
 
-class CostumeList extends Component {
+export class CostumeList extends Component {
   async componentDidMount() {
-    const response = await fetch('http://localhost:5000/api/v1/costumes');
-    const costumes = await response.json();
-
-    console.log(costumes);
+    this.props.fetchCostumes();
   }
+
+  renderCostumes = () =>
+    this.props.costumeReducer.costumes.map(costume => (
+      <li key={costume._id}>{costume.name}</li>
+    ));
 
   render() {
     return (
       <div>
         <h2>Costume List</h2>
+        <ul>
+          {this.props.costumeReducer.requestPending
+            ? 'Loading...'
+            : this.renderCostumes()}
+        </ul>
       </div>
     );
   }
 }
 
-export default CostumeList;
+const mapStateToProps = ({ costumeReducer }) => ({ costumeReducer });
+
+export default connect(
+  mapStateToProps,
+  { fetchCostumes }
+)(CostumeList);
