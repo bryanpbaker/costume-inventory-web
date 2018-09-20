@@ -1,10 +1,10 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import Api from '../api';
 import {
   FETCH_COSTUMES_REQUEST,
   FETCH_COSTUMES_SUCCESS,
   FETCH_COSTUMES_FAILURE
 } from '../modules/costumes';
-import Api from '../api';
 
 function* fetchCostumesFromServer(action) {
   try {

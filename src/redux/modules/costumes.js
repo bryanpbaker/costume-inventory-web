@@ -14,7 +14,9 @@ export function fetchCostumes() {
 }
 
 // set initial state
-const initialState = { costumes: [] };
+const initialState = {
+  costumes: []
+};
 
 // Reducer
 export default function reducer(state = initialState, action = {}) {
@@ -23,7 +25,10 @@ export default function reducer(state = initialState, action = {}) {
       return { ...state, requestPending: true };
     case FETCH_COSTUMES_SUCCESS:
       return action.costumes
-        ? { costumes: [...state, ...action.costumes], requestPending: false }
+        ? {
+            costumes: [...state.costumes, ...action.costumes],
+            requestPending: false
+          }
         : state;
     default:
       return state;
