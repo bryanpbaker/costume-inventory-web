@@ -5,6 +5,9 @@ import {
   FETCH_COSTUMES_FAILURE
 } from '../modules/costumes';
 
+/**
+ * TODO abstract these types of calls OR maybe just use fetch()?
+ */
 const fetchUserCall = () =>
   fetch(`${process.env.REACT_APP_API_URI}/costumes`)
     .then(res => res.json())
