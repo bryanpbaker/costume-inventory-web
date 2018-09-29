@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCostumes } from '../redux/modules/costumes';
+import { fetchCostumes, clearCostumes } from '../redux/modules/costumes';
+import CostumeCard from '../components/CostumeCard';
 
 export class CostumeList extends Component {
-  async componentDidMount() {
+  componentDidMount() {
     this.props.fetchCostumes();
+  }
+
+  componentWillUnmount() {
+    this.props.clearCostumes();
   }
 
   renderCostumes = () =>
     this.props.costumeReducer.costumes.map(costume => (
-      <li key={costume._id}>{costume.name}</li>
+      <CostumeCard key={costume._id} costume={costume} />
     ));
 
   render() {
@@ -30,5 +35,5 @@ const mapStateToProps = ({ costumeReducer }) => ({ costumeReducer });
 
 export default connect(
   mapStateToProps,
-  { fetchCostumes }
+  { fetchCostumes, clearCostumes }
 )(CostumeList);
